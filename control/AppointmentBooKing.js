@@ -2,12 +2,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import Appointment from '../models/appointmentModel.js'; // make sure path and extension are correct
 
-const router = express.Router(); // Use Router instead of app
+const appointmentRoutes = express.Router(); // Use Router instead of app
 
 // Remove this line since middleware is handled in main app
 // router.use(express.json()); 
 
-router.post('/', async (req, res) => { // Change from '/api/appointment' to '/'
+appointmentRoutes.post('/', async (req, res) => { // Change from '/api/appointment' to '/'
   try {
     const { name, contact, date, preferredTime, service } = req.body;
 
@@ -38,4 +38,4 @@ router.post('/', async (req, res) => { // Change from '/api/appointment' to '/'
   }
 });
 
-export default router; // Export router instead of app
+export default appointmentRoutes; // Export router instead of app

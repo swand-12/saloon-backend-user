@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Glamour Salon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #764ba2;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            margin-top: 80px;
+            padding: 4rem 0;
+        }
+
+        .about-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-header h1 {
+            font-size: 3rem;
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+
+        .about-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text h2 {
+            color: #764ba2;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .team-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .team-header h2 {
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 1rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .team-card h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-section, .team-section {
+                padding: 2rem;
+                margin: 0 1rem 2rem;
+            }
+
+            .about-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .team-header h2 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-links a {
+                padding: 0.3rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="logo">✨ Glamour Salon</a>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/book-appointment">Book Appointment</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/about" class="active">About Us</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <section class="about-section">
+                <div class="about-header">
+                    <h1>About Glamour Salon</h1>
+                    <p>Where beauty meets excellence and every client leaves feeling confident and beautiful</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2015, Glamour Salon has been at the forefront of beauty and wellness services in the city. What started as a small dream has grown into one of the most trusted names in the beauty industry.</p>
+                        <p>Our journey began with a simple vision: to create a space where everyone can feel pampered, relaxed, and beautiful. Over the years, we have built a reputation for excellence, innovation, and personalized care.</p>
+                        <p>We believe that beauty is not just about looking good, but feeling confident and comfortable in your own skin. That's why we focus on providing not just services, but experiences that leave lasting impressions.</p>
+                    </div>
+
+                    <div class="about-text">
+                        <h2>Our Mission</h2>
+                        <p>At Glamour Salon, our mission is to enhance natural beauty while providing a relaxing and luxurious experience for every client. We are committed to:</p>
+                        <p>• Using only premium, high-quality products and equipment</p>
+                        <p>• Providing personalized treatments tailored to individual needs</p>
+                        <p>• Maintaining the highest standards of hygiene and safety</p>
+                        <p>• Continuously updating our skills and techniques</p>
+                        <p>• Creating a welcoming environment for all clients</p>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">5000+</span>
+                        <span class="stat-label">Happy Clients</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">8+</span>
+                        <span class="stat-label">Years of Experience</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Expert Stylists</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Services Offered</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="team-section">
+                <div class="team-header">
+                    <h2>Meet Our Expert Team</h2>
+                    <p>Our skilled professionals are passionate about making you look and feel your best</p>
+                </div>
+
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👩‍💼</div>
+                        <h3>Priya Sharma</h3>
+                        <p class="team-role">Salon Manager & Senior Stylist</p>
+                        <p>With over 10 years of experience, Priya leads our team with expertise in hair styling and customer service excellence.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">💇‍♀️</div>
+                        <h3>Anjali Patel</h3>
+                        <p class="team-role">Hair Specialist</p>
+                        <p>Anjali specializes in hair treatments, coloring, and styling. She's known for her creative approach and attention to detail.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">✨</div>
+                        <h3>Riya Gupta</h3>
+                        <p class="team-role">Skincare & Facial Expert</p>
+                        <p>Riya is our go-to expert for all skincare needs. She provides personalized facial treatments and skincare consultations.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">💅</div>
+                        <h3>Meera Singh</h3>
+                        <p class="team-role">Nail Art Specialist</p>
+                        <p>Meera creates stunning nail art designs and provides professional manicure and pedicure services with artistic flair.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">👰</div>
+                        <h3>Kavya Reddy</h3>
+                        <p class="team-role">Bridal Makeup Artist</p>
+                        <p>Kavya specializes in bridal makeup and styling, making every bride's special day even more memorable and beautiful.</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="team-avatar">🧴</div>
+                        <h3>Sneha Joshi</h3>
+                        <p class="team-role">Massage Therapist</p>
+                        <p>Sneha provides relaxing body treatments and therapeutic massages, helping clients unwind and rejuvenate.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+</html>

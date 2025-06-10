@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import appointmentRoutes from './control/AppointmentBooking.js';
+import appointmentRoutes from './control/AppointmentBooKing.js';
 
 // Get __dirname equivalent for ES modules
 const __filename = fileURLToPath(import.meta.url);
@@ -42,17 +42,26 @@ app.get('/contact', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'contact', 'index.html'));
 });
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log('✅ Connected to MongoDB');
+// MongoDB Connection - Serverless friendly
+if (mongoose.connection.readyState === 0) {
+  mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('❌ MongoDB connection error:', err);
+  });
+}
+
+// Only listen on port for local development
+if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on http://localhost:${PORT}`);
   });
-})
-.catch((err) => {
-  console.error('❌ MongoDB connection error:', err);
-});
+}
+
+// Export the app for Vercel
+export default app;

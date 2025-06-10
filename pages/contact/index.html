@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Glamour Salon</title>
+    <title>Contact Us - Pramilas Beauty Parlour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -12,11 +13,20 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #f9f9f9;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .container {
@@ -27,14 +37,15 @@
 
         /* Navigation Styles */
         nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(15, 15, 15, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
         }
 
         .nav-container {
@@ -46,29 +57,65 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #764ba2;
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+            color: #f8b195;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #f0f0f0;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0.7rem 1.5rem;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            transform: translateY(-2px);
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before, 
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover, 
+        .nav-links a.active {
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(248, 177, 149, 0.2);
+        }
+
+        .nav-links a:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(248, 177, 149, 0.3);
         }
 
         /* Main Content */
@@ -79,176 +126,322 @@
 
         .contact-header {
             text-align: center;
-            color: white;
             margin-bottom: 4rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .contact-header h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .contact-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #e0e0e0;
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 3rem;
+            animation: fadeInUp 1.2s ease-out;
         }
 
-        .contact-info {
-            background: rgba(255, 255, 255, 0.95);
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .contact-info, .salon-details, .map-section {
+            background: rgba(25, 25, 25, 0.85);
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
 
-        .contact-info h2 {
-            color: #764ba2;
-            font-size: 2rem;
+        .contact-info:hover, .salon-details:hover, .map-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-info h2, .salon-details h2, .map-section h2 {
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.2rem;
             margin-bottom: 2rem;
             text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(248, 177, 149, 0.3);
         }
 
         .info-item {
             display: flex;
             align-items: center;
             margin-bottom: 2rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            transition: all 0.3s ease;
+            padding: 1.5rem;
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .info-item:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(10px);
+            background: rgba(50, 50, 50, 0.8);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(248, 177, 149, 0.3);
         }
 
         .info-icon {
-            font-size: 2rem;
-            margin-right: 1rem;
-            width: 60px;
-            text-align: center;
+            font-size: 2.2rem;
+            margin-right: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background: rgba(248, 177, 149, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #f8b195;
+            flex-shrink: 0;
         }
 
         .info-details h3 {
-            color: #764ba2;
-            font-size: 1.2rem;
+            color: #f8b195;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
         }
 
         .info-details p {
-            color: #666;
-            font-size: 1rem;
+            color: #d0d0d0;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
 
-        .salon-details {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .salon-details h2 {
-            color: #764ba2;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
+        .info-item:hover .info-details p {
+            color: #fff;
         }
 
         .hours-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 2rem;
+            border-radius: 10px;
+            overflow: hidden;
         }
 
         .hours-table th,
         .hours-table td {
-            padding: 1rem;
+            padding: 1.2rem;
             text-align: left;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .hours-table th {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            color: #fff;
             font-weight: 600;
         }
 
         .hours-table tr:hover {
-            background: #f8f9fa;
+            background: rgba(50, 50, 50, 0.6);
         }
 
         .admin-info {
-            background: #f8f9fa;
+            background: rgba(40, 40, 40, 0.7);
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .admin-info h3 {
-            color: #764ba2;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            color: #f8b195;
+            margin-bottom: 1.2rem;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-info h3 i {
+            color: #f67280;
         }
 
         .admin-info p {
-            color: #666;
-            margin-bottom: 0.5rem;
+            color: #d0d0d0;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
         }
 
         .emergency-contact {
-            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            background: linear-gradient(135deg, #ff6b6b, #c0392b);
             color: white;
             padding: 2rem;
             border-radius: 15px;
             margin-top: 2rem;
             text-align: center;
+            animation: pulse 2s infinite;
+            border: none;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
         }
 
         .emergency-contact h3 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .emergency-contact p {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .map-section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 3rem;
             margin-top: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
         }
 
         .map-section h2 {
-            color: #764ba2;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
         }
 
         .map-placeholder {
             width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100%;
+            background: linear-gradient(135deg, #2c3e50, #4a6491);
             border-radius: 15px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
             text-align: center;
+            padding: 20px;
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            color: #f8b195;
+        }
+
+        .map-placeholder h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder p {
+            font-size: 1.2rem;
+            max-width: 500px;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 0;
+            margin-top: 5rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            color: #f8b195;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(248, 177, 149, 0.2);
+        }
+
+        .footer-section p, .footer-section a {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #f8b195;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(248, 177, 149, 0.1);
+            color: #f8b195;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, #f8b195, #f67280);
+            color: #fff;
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 3rem;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
         }
 
         /* Responsive Design */
@@ -260,7 +453,7 @@
 
             .contact-info, .salon-details, .map-section {
                 padding: 2rem;
-                margin: 0 1rem;
+                margin: 0;
             }
 
             .contact-header h1 {
@@ -270,20 +463,25 @@
             .info-item {
                 flex-direction: column;
                 text-align: center;
+                padding: 1.5rem;
             }
 
             .info-icon {
                 margin-right: 0;
-                margin-bottom: 1rem;
+                margin-bottom: 1.5rem;
             }
 
             .nav-links {
-                gap: 1rem;
+                gap: 0.8rem;
             }
 
             .nav-links a {
-                padding: 0.3rem 0.8rem;
+                padding: 0.5rem 1rem;
                 font-size: 0.9rem;
+            }
+
+            .map-container {
+                height: 300px;
             }
         }
     </style>
@@ -292,7 +490,9 @@
     <nav>
         <div class="container">
             <div class="nav-container">
-                <a href="/" class="logo">✨ Glamour Salon</a>
+                <a href="/" class="logo">
+                    <i class="fas fa-spa"></i>Pramilas Beauty Parlour
+                </a>
                 <ul class="nav-links">
                     <li><a href="/">Home</a></li>
                     <li><a href="/book-appointment">Book Appointment</a></li>
@@ -308,7 +508,7 @@
         <div class="container">
             <section class="contact-header">
                 <h1>Contact Us</h1>
-                <p>Get in touch with us for appointments, inquiries, or any questions</p>
+                <p>Get in touch with us for appointments, inquiries, or any questions. Our team is ready to provide you with the beauty experience you deserve.</p>
             </section>
 
             <div class="contact-content">
@@ -316,29 +516,32 @@
                     <h2>Get In Touch</h2>
                     
                     <div class="info-item">
-                        <div class="info-icon">📞</div>
+                        <div class="info-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
                         <div class="info-details">
                             <h3>Phone Number</h3>
-                            <p>+91 98765 43210</p>
-                            <p>+91 87654 32109</p>
+                            <p>+91 99607 00729</p>
                         </div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-icon">📧</div>
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
                         <div class="info-details">
                             <h3>Email Address</h3>
-                            <p>info@glamoursalon.com</p>
-                            <p>appointments@glamoursalon.com</p>     
-                            <p>appointments@glamoursalon.com</p>
+                            <p>pramilasparlour6011@gmail.com</p>
                         </div>
                     </div>
 
                     <div class="info-item">
-                        <div class="info-icon">📍</div>
+                        <div class="info-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
                         <div class="info-details">
                             <h3>Location</h3>
-                            <p>123 Glam Street, Beauty City, India</p>
+                            <p>Mangal Dam , Ganapati Mandir ,Ichalkaranji</p>
                         </div>
                     </div>
                 </div>
@@ -354,12 +557,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Monday - Friday</td>
-                                <td>10:00 AM - 8:00 PM</td>
-                            </tr>
-                            <tr>
-                                <td>Saturday</td>
-                                <td>9:00 AM - 9:00 PM</td>
+                                <td>Monday - Saturday</td>
+                                <td>11:00 AM - 7:30 PM</td>
                             </tr>
                             <tr>
                                 <td>Sunday</td>
@@ -369,26 +568,67 @@
                     </table>
 
                     <div class="admin-info">
-                        <h3>Administrator Contact</h3>
-                        <p>Name: Priya Sharma</p>
-                        <p>Email: admin@glamoursalon.com</p>
-                        <p>Phone: +91 91234 56789</p>
+                        <h3><i class="fas fa-user-tie"></i>Administrator Contact</h3>
+                        <p>Name: Pramila Dhere</p>
+                        <p>Email: swananddhere431@gmail.com</p>
+                        <p>Phone: +91 9960700729</p>
                     </div>
 
                     <div class="emergency-contact">
-                        <h3>Emergency Contact</h3>
-                        <p>Call us at +91 99999 88888 for urgent queries</p>
+                        <h3><i class="fas fa-exclamation-circle"></i>Emergency Contact</h3>
+                        <p>Call us at +91 9623323158 for urgent queries</p>
                     </div>
                 </div>
             </div>
 
             <section class="map-section">
                 <h2>Find Us on the Map</h2>
-                <div class="map-placeholder">
-                    Map location embedded here (Coming soon)
+                <div class="map-container">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3>Our Location</h3>
+                        <p>We're located at Mangal Dam, near Ganapati Mandir in Ichalkaranji. Interactive map coming soon!</p>
+                    </div>
                 </div>
             </section>
         </div>
     </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pramilas Beauty Parlour</h3>
+                    <p>Your premier destination for beauty and wellness services. We specialize in making you look and feel your absolute best.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="/">Home</a>
+                    <a href="/services">Services</a>
+                    <a href="/book-appointment">Book Appointment</a>
+                    <a href="/about">About Us</a>
+                    <a href="/contact">Contact</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Mangal Dam, Ganapati Mandir, Ichalkaranji</p>
+                    <p><i class="fas fa-phone"></i> +91 99607 00729</p>
+                    <p><i class="fas fa-envelope"></i> pramilasparlour6011@gmail.com</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Pramilas Beauty Parlour. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

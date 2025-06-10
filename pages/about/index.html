@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Glamour Salon</title>
+    <title>About Us - Pramila's Beauty Parlour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -16,7 +17,10 @@
             line-height: 1.6;
             color: #333;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
         }
 
         .container {
@@ -27,14 +31,14 @@
 
         /* Navigation Styles */
         nav {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
@@ -46,8 +50,15 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #764ba2;
+            color: #e0b0ff;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: #e0b0ff;
         }
 
         .nav-links {
@@ -58,17 +69,24 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #fff;
             font-weight: 500;
             transition: all 0.3s ease;
             padding: 0.5rem 1rem;
             border-radius: 25px;
+            position: relative;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(135deg, #e0b0ff, #c77dff);
+            color: #2d0a45;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(192, 132, 252, 0.4);
+        }
+
+        .nav-links a:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 5px rgba(192, 132, 252, 0.4);
         }
 
         /* Main Content */
@@ -83,7 +101,7 @@
             border-radius: 20px;
             padding: 3rem;
             margin-bottom: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .about-header {
@@ -95,13 +113,27 @@
             font-size: 3rem;
             color: #764ba2;
             margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #e0b0ff, #c77dff);
+            border-radius: 2px;
         }
 
         .about-header p {
             font-size: 1.2rem;
             color: #666;
             max-width: 600px;
-            margin: 0 auto;
+            margin: 2rem auto 0;
         }
 
         .about-content {
@@ -121,6 +153,19 @@
             color: #764ba2;
             margin-bottom: 1rem;
             font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #e0b0ff, #c77dff);
+            border-radius: 2px;
         }
 
         .about-text p {
@@ -137,14 +182,21 @@
         .stat-card {
             text-align: center;
             padding: 1.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: linear-gradient(135deg, #e0b0ff, #c77dff);
+            color: #2d0a45;
             border-radius: 15px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(192, 132, 252, 0.3);
         }
 
         .stat-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(192, 132, 252, 0.5);
+        }
+
+        .stat-card:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 8px rgba(192, 132, 252, 0.5);
         }
 
         .stat-number {
@@ -156,7 +208,7 @@
 
         .stat-label {
             font-size: 1rem;
-            opacity: 0.9;
+            font-weight: 500;
         }
 
         .team-section {
@@ -164,7 +216,8 @@
             backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
 
         .team-header {
@@ -176,59 +229,174 @@
             font-size: 2.5rem;
             color: #764ba2;
             margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .team-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #e0b0ff, #c77dff);
+            border-radius: 2px;
+        }
+
+        .team-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .team-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .team-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .team-info {
+            flex: 1;
+            min-width: 300px;
         }
 
         .team-card {
-            text-align: center;
-            padding: 2rem;
             background: #f8f9fa;
             border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .team-card:hover {
-            transform: translateY(-5px);
+            padding: 2rem;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: white;
         }
 
         .team-card h3 {
             color: #764ba2;
             margin-bottom: 0.5rem;
+            font-size: 1.8rem;
         }
 
         .team-role {
             color: #666;
             font-style: italic;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .team-card p {
             color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .team-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #e0b0ff, #c77dff);
+            color: #2d0a45;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .achievements-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .achievements-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .achievements-header h2 {
+            font-size: 2.5rem;
+            color: #764ba2;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .achievements-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #e0b0ff, #c77dff);
+            border-radius: 2px;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .certificate-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .certificate-img {
+            height: 200px;
+            background: linear-gradient(135deg, #e0b0ff, #c77dff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2d0a45;
+            font-size: 3rem;
+        }
+
+        .certificate-info {
+            padding: 1.5rem;
+        }
+
+        .certificate-info h3 {
+            color: #764ba2;
+            margin-bottom: 0.5rem;
+        }
+
+        .certificate-info p {
+            color: #666;
             font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .about-section, .team-section {
+            .about-section, .team-section, .achievements-section {
                 padding: 2rem;
                 margin: 0 1rem 2rem;
             }
@@ -237,17 +405,93 @@
                 font-size: 2.5rem;
             }
 
-            .team-header h2 {
+            .team-header h2, .achievements-header h2 {
                 font-size: 2rem;
             }
 
             .nav-links {
-                gap: 1rem;
+                gap: 0.5rem;
             }
 
             .nav-links a {
                 padding: 0.3rem 0.8rem;
                 font-size: 0.9rem;
+            }
+
+            .team-container {
+                flex-direction: column;
+            }
+
+            .team-image {
+                max-width: 100%;
+            }
+        }
+
+        /* Animation for elements */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .about-header, .about-content, .stats-grid, 
+        .team-header, .team-container, .achievements-header,
+        .certificates-grid {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .about-content {
+            animation-delay: 0.2s;
+        }
+
+        .stats-grid {
+            animation-delay: 0.4s;
+        }
+
+        .team-header {
+            animation-delay: 0.2s;
+        }
+
+        .team-container {
+            animation-delay: 0.4s;
+        }
+
+        .achievements-header {
+            animation-delay: 0.2s;
+        }
+
+        .certificates-grid {
+            animation-delay: 0.4s;
+        }
+
+        /* Scroll animation */
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+        }
+
+        .active.fade-left {
+            animation: fade-left 1s ease;
+        }
+
+        @keyframes fade-left {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
             }
         }
     </style>
@@ -256,7 +500,7 @@
     <nav>
         <div class="container">
             <div class="nav-container">
-                <a href="/" class="logo">✨ Glamour Salon</a>
+                <a href="/" class="logo"><i class="fas fa-spa"></i> Pramila's Beauty Parlour</a>
                 <ul class="nav-links">
                     <li><a href="/">Home</a></li>
                     <li><a href="/book-appointment">Book Appointment</a></li>
@@ -272,21 +516,21 @@
         <div class="container">
             <section class="about-section">
                 <div class="about-header">
-                    <h1>About Glamour Salon</h1>
+                    <h1>About Pramila's Beauty Parlour</h1>
                     <p>Where beauty meets excellence and every client leaves feeling confident and beautiful</p>
                 </div>
 
                 <div class="about-content">
                     <div class="about-text">
                         <h2>Our Story</h2>
-                        <p>Founded in 2015, Glamour Salon has been at the forefront of beauty and wellness services in the city. What started as a small dream has grown into one of the most trusted names in the beauty industry.</p>
+                        <p>Founded in 2013, Pramila's Beauty Parlour has been at the forefront of beauty and wellness services in the city. What started as a small dream has grown into one of the most trusted names in the beauty industry.</p>
                         <p>Our journey began with a simple vision: to create a space where everyone can feel pampered, relaxed, and beautiful. Over the years, we have built a reputation for excellence, innovation, and personalized care.</p>
                         <p>We believe that beauty is not just about looking good, but feeling confident and comfortable in your own skin. That's why we focus on providing not just services, but experiences that leave lasting impressions.</p>
                     </div>
 
                     <div class="about-text">
                         <h2>Our Mission</h2>
-                        <p>At Glamour Salon, our mission is to enhance natural beauty while providing a relaxing and luxurious experience for every client. We are committed to:</p>
+                        <p>At Pramila's Beauty Parlour, our mission is to enhance natural beauty while providing a relaxing and luxurious experience for every client. We are committed to:</p>
                         <p>• Using only premium, high-quality products and equipment</p>
                         <p>• Providing personalized treatments tailored to individual needs</p>
                         <p>• Maintaining the highest standards of hygiene and safety</p>
@@ -297,19 +541,16 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <span class="stat-number">5000+</span>
+                        <span class="stat-number">3500+</span>
                         <span class="stat-label">Happy Clients</span>
                     </div>
                     <div class="stat-card">
-                        <span class="stat-number">8+</span>
+                        <span class="stat-number">10+</span>
                         <span class="stat-label">Years of Experience</span>
                     </div>
+                  
                     <div class="stat-card">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Expert Stylists</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number">50+</span>
+                        <span class="stat-number">30+</span>
                         <span class="stat-label">Services Offered</span>
                     </div>
                 </div>
@@ -317,55 +558,120 @@
 
             <section class="team-section">
                 <div class="team-header">
-                    <h2>Meet Our Expert Team</h2>
-                    <p>Our skilled professionals are passionate about making you look and feel your best</p>
+                    <h2>Meet Our Expert</h2>
+                    <p>Our skilled professional is passionate about making you look and feel your best</p>
                 </div>
 
-                <div class="team-grid">
-                    <div class="team-card">
-                        <div class="team-avatar">👩‍💼</div>
-                        <h3>Priya Sharma</h3>
-                        <p class="team-role">Salon Manager & Senior Stylist</p>
-                        <p>With over 10 years of experience, Priya leads our team with expertise in hair styling and customer service excellence.</p>
+                <div class="team-container">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1599351431408-433ef72fe40b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Pramila Dhere">
+                    </div>
+                    
+                    <div class="team-info">
+                        <div class="team-card">
+                            <h3>Pramila Dhere</h3>
+                            <p class="team-role">Founder & Senior Beauty Specialist</p>
+                            <p>With over 10 years of experience in the beauty industry, Pramila is the heart and soul of our parlour. Her expertise spans across hair care, skincare, and specialized beauty treatments.</p>
+                            <p>Pramila's journey began with a passion for helping people look and feel their best. She has trained under some of the top beauty experts in the country and brings innovative techniques to her practice.</p>
+                            
+                            <div class="team-skills">
+                                <span class="skill-tag">Hair Treatments</span>
+                                <span class="skill-tag">Facial Specialist</span>
+                                <span class="skill-tag">Bridal Makeup</span>
+                                <span class="skill-tag">Skin Rejuvenation</span>
+                                <span class="skill-tag">Hair Coloring</span>
+                                <span class="skill-tag">Anti-Aging Treatments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="achievements-section">
+                <div class="achievements-header">
+                    <h2>Our Achievements & Certifications</h2>
+                    <p>Recognized excellence in the beauty industry</p>
+                </div>
+
+                <div class="certificates-grid">
+                    <div class="certificate-card">
+                        <div class="certificate-img">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>Master Stylist Certification</h3>
+                            <p>Certified by International Beauty Association, 2015</p>
+                        </div>
                     </div>
 
-                    <div class="team-card">
-                        <div class="team-avatar">💇‍♀️</div>
-                        <h3>Anjali Patel</h3>
-                        <p class="team-role">Hair Specialist</p>
-                        <p>Anjali specializes in hair treatments, coloring, and styling. She's known for her creative approach and attention to detail.</p>
+                    <div class="certificate-card">
+                        <div class="certificate-img">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>Advanced Skin Care Specialist</h3>
+                            <p>Certified by Global Skincare Institute, 2017</p>
+                        </div>
                     </div>
 
-                    <div class="team-card">
-                        <div class="team-avatar">✨</div>
-                        <h3>Riya Gupta</h3>
-                        <p class="team-role">Skincare & Facial Expert</p>
-                        <p>Riya is our go-to expert for all skincare needs. She provides personalized facial treatments and skincare consultations.</p>
+                    <div class="certificate-card">
+                        <div class="certificate-img">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>Excellence in Beauty Award</h3>
+                            <p>City Beauty Association, 2019</p>
+                        </div>
                     </div>
 
-                    <div class="team-card">
-                        <div class="team-avatar">💅</div>
-                        <h3>Meera Singh</h3>
-                        <p class="team-role">Nail Art Specialist</p>
-                        <p>Meera creates stunning nail art designs and provides professional manicure and pedicure services with artistic flair.</p>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-avatar">👰</div>
-                        <h3>Kavya Reddy</h3>
-                        <p class="team-role">Bridal Makeup Artist</p>
-                        <p>Kavya specializes in bridal makeup and styling, making every bride's special day even more memorable and beautiful.</p>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="team-avatar">🧴</div>
-                        <h3>Sneha Joshi</h3>
-                        <p class="team-role">Massage Therapist</p>
-                        <p>Sneha provides relaxing body treatments and therapeutic massages, helping clients unwind and rejuvenate.</p>
+                    <div class="certificate-card">
+                        <div class="certificate-img">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="certificate-info">
+                            <h3>Hair Coloring Specialist</h3>
+                            <p>Certified by Professional Hairdressers Association, 2020</p>
+                        </div>
                     </div>
                 </div>
             </section>
         </div>
     </main>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll reveal animation
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            revealElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // Button click animation
+            const buttons = document.querySelectorAll('.stat-card, .nav-links a');
+            buttons.forEach(button => {
+                button.addEventListener('mousedown', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                button.addEventListener('mouseup', function() {
+                    this.style.transform = '';
+                });
+                button.addEventListener('mouseleave', function() {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

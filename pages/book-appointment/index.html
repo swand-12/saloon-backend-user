@@ -506,7 +506,7 @@
 
     <script>
         // API Configuration - Update this URL to match your backend
-      const API_BASE_URL = 'http://localhost:5000'; // Change this to your backend URL
+      const API_BASE_URL = window.location.origin; // Change this to your backend URL
         
         // Set minimum date to today
         const today = new Date().toISOString().split('T')[0];

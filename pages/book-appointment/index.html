@@ -505,6 +505,9 @@
     </footer>
 
     <script>
+        // API Configuration - Update this URL to match your backend
+      const API_BASE_URL = 'http://localhost:5000'; // Change this to your backend URL
+        
         // Set minimum date to today
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('date').setAttribute('min', today);
@@ -514,7 +517,7 @@
         defaultDate.setDate(defaultDate.getDate() + 3);
         document.getElementById('date').value = defaultDate.toISOString().split('T')[0];
 
-        // Handle form submission
+        // Handle form submission with real API call
         document.getElementById('appointmentForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -537,33 +540,41 @@
             messageDiv.innerHTML = '';
             messageDiv.style.display = 'none';
 
-            // Simulate network delay for demo
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
             try {
-                // Simulate API response - in a real app this would be a fetch call
-                const success = Math.random() > 0.2; // 80% success rate for demo
-                
-                if (success) {
-                    // Success
+                // Make actual API call to your backend
+                const response = await fetch(`${API_BASE_URL}/api/appointments`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(appointmentData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Success response
                     messageDiv.innerHTML = `
                         <div class="message success">
                             <i class="fas fa-check-circle"></i> Your luxury experience is reserved!<br>
-                            We'll contact you soon to confirm your appointment details.
+                            ${result.message || 'We\'ll contact you soon to confirm your appointment details.'}
                         </div>
                     `;
-                    this.reset();
+                    this.reset(); // Clear the form
+                    // Reset the default date
+                    document.getElementById('date').value = defaultDate.toISOString().split('T')[0];
                 } else {
-                    // Error from server
+                    // Error response from server
                     messageDiv.innerHTML = `
                         <div class="message error">
-                            <i class="fas fa-exclamation-circle"></i> Selected time is unavailable.<br>
-                            Please choose another time or contact our concierge.
+                            <i class="fas fa-exclamation-circle"></i> ${result.error || 'Something went wrong.'}<br>
+                            Please try again or contact our concierge.
                         </div>
                     `;
                 }
             } catch (error) {
-                // Network error
+                console.error('API Error:', error);
+                // Network or other error
                 messageDiv.innerHTML = `
                     <div class="message error">
                         <i class="fas fa-exclamation-triangle"></i> Connection error.<br>

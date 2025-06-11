@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes for API
-app.use('/api/appointment', appointmentRoutes);
+app.use('/api/appointments', appointmentRoutes); 
 
 // Routes for serving HTML pages
 app.get('/', (req, res) => {

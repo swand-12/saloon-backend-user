@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Schedule - Pramilas Beauty Parlour</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .nav-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        .nav-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .day-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .day-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .day-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .day-date {
+            font-size: 1.1rem;
+            color: #718096;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .time-slot {
+            background: #f8f9fa;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-slot::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .time-slot:hover::before {
+            transform: translateX(100%);
+        }
+
+        .time-slot:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .time-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+
+        .booking-count {
+            font-size: 0.9rem;
+            color: #4a5568;
+            margin-bottom: 5px;
+        }
+
+        .availability-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .availability-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s ease;
+        }
+
+        /* Availability color scheme */
+        .available-0 {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            border-color: #48bb78;
+        }
+
+        .available-0 .time-text,
+        .available-0 .booking-count {
+            color: white;
+        }
+
+        .available-0 .availability-fill {
+            background: #48bb78;
+            width: 0%;
+        }
+
+        .available-1 {
+            background: linear-gradient(135deg, #ecc94b, #d69e2e);
+            border-color: #ecc94b;
+        }
+
+        .available-1 .availability-fill {
+            background: #ecc94b;
+            width: 25%;
+        }
+
+        .available-2 {
+            background: linear-gradient(135deg, #ed8936, #dd6b20);
+            border-color: #ed8936;
+        }
+
+        .available-2 .availability-fill {
+            background: #ed8936;
+            width: 50%;
+        }
+
+        .available-3 {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            border-color: #f56565;
+        }
+
+        .available-3 .availability-fill {
+            background: #f56565;
+            width: 75%;
+        }
+
+        .available-4 {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            border-color: #e53e3e;
+            color: white;
+        }
+
+        .available-4 .time-text,
+        .available-4 .booking-count {
+            color: white;
+        }
+
+        .available-4 .availability-fill {
+            background: #e53e3e;
+            width: 100%;
+        }
+
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #4a5568;
+        }
+
+        .loading i {
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error {
+            text-align: center;
+            padding: 40px;
+            color: #e53e3e;
+            background: rgba(229, 62, 62, 0.1);
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .refresh-btn:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .time-slots {
+                grid-template-columns: 1fr;
+            }
+
+            .legend {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="nav-button">
+        <i class="fas fa-home"></i>
+        Back to Home
+    </a>
+
+    <div class="header">
+        <h1><i class="fas fa-calendar-alt"></i> Booking Schedule</h1>
+        <p>Real-time availability overview for your salon</p>
+    </div>
+
+    <div class="container">
+        <!-- Today's Bookings -->
+        <div class="day-section">
+            <div class="day-header">
+                <div class="day-title">Today</div>
+                <div class="day-date" id="todayDate">Loading...</div>
+            </div>
+            <div id="todaySlots" class="time-slots">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading today's schedule...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tomorrow's Bookings -->
+        <div class="day-section">
+            <div class="day-header">
+                <div class="day-title">Tomorrow</div>
+                <div class="day-date" id="tomorrowDate">Loading...</div>
+            </div>
+            <div id="tomorrowSlots" class="time-slots">
+                <div class="loading">
+                    <i class="fas fa-spinner"></i>
+                    <p>Loading tomorrow's schedule...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #48bb78;"></div>
+            <span>Available (0/4)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ecc94b;"></div>
+            <span>Light (1/4)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ed8936;"></div>
+            <span>Moderate (2/4)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f56565;"></div>
+            <span>Busy (3/4)</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #e53e3e;"></div>
+            <span>Full (4/4)</span>
+        </div>
+    </div>
+
+    <button class="refresh-btn" onclick="loadSchedule()" title="Refresh Schedule">
+        <i class="fas fa-sync-alt"></i>
+    </button>
+
+    <script>
+        // Time slots from 10 AM to 8 PM
+        const timeSlots = [
+            '10:00 AM', '11:00 AM', '12:00 PM', '1:00 PM',
+            '2:00 PM', '3:00 PM', '4:00 PM', '5:00 PM',
+            '6:00 PM', '7:00 PM', '8:00 PM'
+        ];
+
+        // Format date for display
+        function formatDate(date) {
+            return date.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Get date in YYYY-MM-DD format
+        function getDateString(date) {
+            return date.toISOString().split('T')[0];
+        }
+
+        // Create time slot HTML
+        function createTimeSlot(time, bookingCount) {
+            const availabilityClass = `available-${bookingCount}`;
+            const availabilityText = bookingCount === 4 ? 'FULL' : `${bookingCount}/4 booked`;
+            
+            return `
+                <div class="time-slot ${availabilityClass}">
+                    <div class="time-text">${time}</div>
+                    <div class="booking-count">${availabilityText}</div>
+                    <div class="availability-bar">
+                        <div class="availability-fill"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fetch bookings from API
+        async function getBookingsForDate(date) {
+            try {
+                const response = await fetch(`/api/appointments/bookings?date=${date}`);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch bookings');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching bookings:', error);
+                // Return empty array if API fails
+                return [];
+            }
+        }
+
+        // Count bookings per time slot
+        function countBookingsByTime(bookings) {
+            const counts = {};
+            
+            // Initialize all time slots with 0 count
+            timeSlots.forEach(time => {
+                counts[time] = 0;
+            });
+            
+            // Count accepted bookings
+            bookings.forEach(booking => {
+                if (booking.status === 'accepted' && counts.hasOwnProperty(booking.preferredTime)) {
+                    counts[booking.preferredTime]++;
+                }
+            });
+            
+            return counts;
+        }
+
+        // Load schedule for a specific date
+        async function loadDaySchedule(date, containerId) {
+            const container = document.getElementById(containerId);
+            
+            try {
+                container.innerHTML = `
+                    <div class="loading">
+                        <i class="fas fa-spinner"></i>
+                        <p>Loading schedule...</p>
+                    </div>
+                `;
+                
+                const dateString = getDateString(date);
+                const bookings = await getBookingsForDate(dateString);
+                const bookingCounts = countBookingsByTime(bookings);
+                
+                // Generate time slots HTML
+                let slotsHTML = '';
+                timeSlots.forEach(time => {
+                    const count = Math.min(bookingCounts[time] || 0, 4); // Cap at 4
+                    slotsHTML += createTimeSlot(time, count);
+                });
+                
+                container.innerHTML = slotsHTML;
+                
+            } catch (error) {
+                console.error('Error loading schedule:', error);
+                container.innerHTML = `
+                    <div class="error">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Error loading schedule. Please try again.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load complete schedule
+        async function loadSchedule() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            // Update date displays
+            document.getElementById('todayDate').textContent = formatDate(today);
+            document.getElementById('tomorrowDate').textContent = formatDate(tomorrow);
+            
+            // Load both days
+            await Promise.all([
+                loadDaySchedule(today, 'todaySlots'),
+                loadDaySchedule(tomorrow, 'tomorrowSlots')
+            ]);
+        }
+
+        // Auto-refresh every 5 minutes
+        function startAutoRefresh() {
+            setInterval(() => {
+                loadSchedule();
+            }, 5 * 60 * 1000); // 5 minutes
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSchedule();
+            startAutoRefresh();
+        });
+
+        // Add click event to time slots for future functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.time-slot')) {
+                const timeSlot = e.target.closest('.time-slot');
+                const timeText = timeSlot.querySelector('.time-text').textContent;
+                const bookingCount = timeSlot.querySelector('.booking-count').textContent;
+                
+                // You can add modal or navigation to detailed view here
+                console.log(`Clicked on ${timeText} - ${bookingCount}`);
+                
+                // Optional: Show alert with booking info
+                alert(`Time: ${timeText}\nStatus: ${bookingCount}\n\nClick "Book Appointment" to make a reservation for this time.`);
+            }
+        });
+    </script>
+</body>
+</html>

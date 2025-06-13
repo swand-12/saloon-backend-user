@@ -30,6 +30,10 @@ app.get('/book-appointment', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'book-appointment', 'index.html'));
 });
 
+app.get('/view-schedule', (req, res) => {
+  res.sendFile(path.join(__dirname, 'pages', 'viewSchedule', 'index.html'));
+});
+
 app.get('/about', (req, res) => {
   res.sendFile(path.join(__dirname, 'pages', 'about', 'index.html'));
 });

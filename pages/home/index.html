@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pramilas Beauty Parlour - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,11 +14,11 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Montserrat', 'Segoe UI', sans-serif;
             line-height: 1.7;
-            color: #f9f9f9;
+            color: #f0e6e1;
             min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), 
+            background: linear-gradient(rgba(10, 8, 15, 0.9), rgba(15, 12, 20, 0.95)), 
                         url('https://images.unsplash.com/photo-1560066984-138dadb4c035?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80') no-repeat center center fixed;
             background-size: cover;
             position: relative;
@@ -25,8 +26,30 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .container {
@@ -37,7 +60,7 @@
 
         /* Navigation Styles */
         nav {
-            background: rgba(15, 15, 15, 0.95);
+            background: rgba(15, 12, 20, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             position: fixed;
@@ -45,7 +68,7 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(210, 180, 140, 0.2);
         }
 
         .nav-container {
@@ -56,19 +79,21 @@
 
         .logo {
             font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #f8b195, #f67280);
+            font-weight: 700;
+            background: linear-gradient(135deg, #e8c2a0, #d4af8f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            letter-spacing: 1px;
         }
 
         .logo i {
             font-size: 1.5rem;
-            color: #f8b195;
+            color: #d4af8f;
+            animation: float 4s ease-in-out infinite;
         }
 
         .nav-links {
@@ -79,7 +104,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: #f0f0f0;
+            color: #e0d6d1;
             font-weight: 500;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             padding: 0.7rem 1.5rem;
@@ -96,7 +121,7 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(135deg, #f8b195, #f67280);
+            background: linear-gradient(135deg, rgba(212, 175, 143, 0.3), rgba(232, 194, 160, 0.4));
             transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: -1;
         }
@@ -110,12 +135,11 @@
         .nav-links a.active {
             color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(248, 177, 149, 0.2);
+            text-shadow: 0 0 10px rgba(232, 194, 160, 0.5);
         }
 
         .nav-links a:active {
-            transform: translateY(-1px);
-            box-shadow: 0 5px 10px rgba(248, 177, 149, 0.3);
+            transform: translateY(0);
         }
 
         /* Main Content */
@@ -131,26 +155,23 @@
             animation: slideUp 1s ease-out;
         }
 
-        @keyframes slideUp {
-            from { transform: translateY(30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #f8b195, #f67280);
+            background: linear-gradient(135deg, #e8c2a0, #d4af8f);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             animation: fadeInUp 1s ease 0.2s both;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .hero p {
             font-size: 1.3rem;
             max-width: 700px;
             margin: 0 auto 2rem;
-            color: #e0e0e0;
+            color: #e0d6d1;
             animation: fadeInUp 1s ease 0.4s both;
         }
 
@@ -165,20 +186,21 @@
 
         .cta-button {
             display: inline-block;
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            color: white;
+            background: linear-gradient(135deg, #d4af8f, #b88e6e);
+            color: #2a1e1a;
             padding: 1.2rem 2.5rem;
             text-decoration: none;
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
             z-index: 1;
             border: none;
             animation: fadeInUp 1s ease 0.6s both;
-            box-shadow: 0 10px 30px rgba(246, 114, 128, 0.4);
+            box-shadow: 0 10px 25px rgba(180, 140, 110, 0.3);
+            letter-spacing: 0.5px;
         }
 
         .cta-button::before {
@@ -187,31 +209,31 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f67280, #f8b195);
+            height: 0;
+            background: linear-gradient(135deg, #b88e6e, #d4af8f);
+            transition: height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .cta-button:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(246, 114, 128, 0.5);
+            box-shadow: 0 15px 35px rgba(180, 140, 110, 0.4);
+            color: #1a1513;
         }
 
         .cta-button:hover::before {
-            opacity: 1;
+            height: 100%;
         }
 
         .cta-button:active {
             transform: translateY(0);
-            box-shadow: 0 5px 15px rgba(246, 114, 128, 0.5);
+            box-shadow: 0 5px 15px rgba(180, 140, 110, 0.4);
         }
 
         .secondary-button {
             display: inline-block;
-            background: rgba(248, 177, 149, 0.1);
-            color: #f8b195;
+            background: rgba(212, 175, 143, 0.1);
+            color: #d4af8f;
             padding: 1.2rem 2.5rem;
             text-decoration: none;
             border-radius: 50px;
@@ -221,44 +243,57 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: 2px solid rgba(248, 177, 149, 0.3);
+            border: 2px solid rgba(212, 175, 143, 0.3);
             animation: fadeInUp 1s ease 0.8s both;
             backdrop-filter: blur(10px);
+            letter-spacing: 0.5px;
         }
 
         .secondary-button:hover {
-            background: rgba(248, 177, 149, 0.2);
+            background: rgba(212, 175, 143, 0.2);
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(248, 177, 149, 0.3);
-            border-color: rgba(248, 177, 149, 0.6);
+            box-shadow: 0 15px 35px rgba(212, 175, 143, 0.3);
+            border-color: rgba(212, 175, 143, 0.6);
             color: #fff;
         }
 
         .secondary-button:active {
             transform: translateY(0);
-            box-shadow: 0 5px 15px rgba(248, 177, 149, 0.3);
+            box-shadow: 0 5px 15px rgba(212, 175, 143, 0.3);
         }
 
         .features {
-            background: rgba(25, 25, 25, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(25, 22, 30, 0.85);
+            backdrop-filter: blur(12px);
             padding: 4rem 0;
             margin: 4rem 0;
             border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(210, 180, 140, 0.15);
             animation: fadeIn 1s ease 0.8s both;
         }
 
         .features h2 {
             text-align: center;
-            color: white;
+            color: #d4af8f;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .features h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #d4af8f, transparent);
+            border-radius: 2px;
         }
 
         .features-grid {
@@ -269,7 +304,7 @@
         }
 
         .feature-card {
-            background: rgba(40, 40, 40, 0.7);
+            background: rgba(40, 35, 45, 0.7);
             padding: 2.5rem 2rem;
             border-radius: 15px;
             text-align: center;
@@ -278,7 +313,8 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(210, 180, 140, 0.1);
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .feature-card::before {
@@ -288,7 +324,7 @@
             left: 0;
             width: 100%;
             height: 0;
-            background: linear-gradient(135deg, rgba(248, 177, 149, 0.2), rgba(246, 114, 128, 0.2));
+            background: linear-gradient(135deg, rgba(212, 175, 143, 0.2), rgba(232, 194, 160, 0.2));
             transition: height 0.4s ease;
             z-index: -1;
         }
@@ -300,13 +336,13 @@
         .feature-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(248, 177, 149, 0.3);
+            border-color: rgba(212, 175, 143, 0.3);
         }
 
         .feature-icon {
             font-size: 3rem;
             margin-bottom: 1.5rem;
-            color: #f8b195;
+            color: #d4af8f;
             transition: transform 0.3s ease;
         }
 
@@ -317,11 +353,12 @@
         .feature-card h3 {
             margin-bottom: 1.2rem;
             font-size: 1.5rem;
-            color: #f8b195;
+            color: #d4af8f;
+            font-weight: 600;
         }
 
         .feature-card p {
-            color: #d0d0d0;
+            color: #e0d6d1;
             font-size: 1.1rem;
             transition: color 0.3s ease;
         }
@@ -339,10 +376,23 @@
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #d4af8f;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .services h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #d4af8f, transparent);
+            border-radius: 2px;
         }
 
         .services-grid {
@@ -352,18 +402,18 @@
         }
 
         .service-card {
-            background: rgba(40, 40, 40, 0.7);
+            background: rgba(40, 35, 45, 0.7);
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(210, 180, 140, 0.1);
         }
 
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            border-color: rgba(248, 177, 149, 0.3);
+            border-color: rgba(212, 175, 143, 0.3);
         }
 
         .service-img {
@@ -379,38 +429,39 @@
         .service-content h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: #f8b195;
+            color: #d4af8f;
+            font-weight: 600;
         }
 
         .service-content p {
-            color: #d0d0d0;
+            color: #e0d6d1;
             margin-bottom: 1.5rem;
         }
 
         .service-price {
             font-size: 1.3rem;
             font-weight: bold;
-            color: #f67280;
+            color: #b88e6e;
             margin-bottom: 1.5rem;
         }
 
         .book-btn {
             display: inline-block;
-            background: rgba(248, 177, 149, 0.1);
-            color: #f8b195;
+            background: rgba(212, 175, 143, 0.1);
+            color: #d4af8f;
             padding: 0.8rem 1.8rem;
             text-decoration: none;
             border-radius: 30px;
             font-weight: 600;
             transition: all 0.3s ease;
-            border: 1px solid rgba(248, 177, 149, 0.3);
+            border: 1px solid rgba(212, 175, 143, 0.3);
         }
 
         .book-btn:hover {
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            color: white;
+            background: linear-gradient(135deg, #d4af8f, #b88e6e);
+            color: #2a1e1a;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(248, 177, 149, 0.2);
+            box-shadow: 0 10px 20px rgba(212, 175, 143, 0.2);
         }
 
         .book-btn:active {
@@ -419,23 +470,36 @@
 
         /* Testimonials */
         .testimonials {
-            background: rgba(25, 25, 25, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(25, 22, 30, 0.85);
+            backdrop-filter: blur(12px);
             padding: 5rem 0;
             border-radius: 20px;
             margin: 4rem 0;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(210, 180, 140, 0.15);
         }
 
         .testimonials h2 {
             text-align: center;
             font-size: 2.5rem;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #d4af8f;
+            font-weight: 600;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .testimonials h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #d4af8f, transparent);
+            border-radius: 2px;
         }
 
         .testimonial-grid {
@@ -445,18 +509,19 @@
         }
 
         .testimonial-card {
-            background: rgba(40, 40, 40, 0.7);
+            background: rgba(40, 35, 45, 0.7);
             padding: 2.5rem;
             border-radius: 15px;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(210, 180, 140, 0.1);
             transition: all 0.4s ease;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .testimonial-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(248, 177, 149, 0.3);
+            border-color: rgba(212, 175, 143, 0.3);
         }
 
         .quote-icon {
@@ -464,12 +529,12 @@
             top: 20px;
             right: 20px;
             font-size: 3rem;
-            color: rgba(248, 177, 149, 0.2);
+            color: rgba(212, 175, 143, 0.2);
         }
 
         .testimonial-content {
             margin-bottom: 1.5rem;
-            color: #d0d0d0;
+            color: #e0d6d1;
             font-style: italic;
             font-size: 1.1rem;
         }
@@ -483,44 +548,34 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #f8b195, #f67280);
+            background: linear-gradient(135deg, #d4af8f, #b88e6e);
             margin-right: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            color: white;
+            color: #2a1e1a;
+            font-weight: 600;
         }
 
         .client-details h4 {
-            color: #f8b195;
+            color: #d4af8f;
             font-size: 1.2rem;
             margin-bottom: 0.3rem;
+            font-weight: 600;
         }
 
         .client-details p {
-            color: #a0a0a0;
+            color: #a09895;
             font-size: 0.9rem;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         /* Footer */
         footer {
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(15, 12, 20, 0.95);
             padding: 3rem 0;
             margin-top: 5rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.1);
+            border-top: 1px solid rgba(210, 180, 140, 0.1);
         }
 
         .footer-content {
@@ -536,15 +591,16 @@
         }
 
         .footer-section h3 {
-            color: #f8b195;
+            color: #d4af8f;
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(248, 177, 149, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 143, 0.2);
+            font-weight: 600;
         }
 
         .footer-section p, .footer-section a {
-            color: #b0b0b0;
+            color: #a09895;
             margin-bottom: 1rem;
             display: block;
             text-decoration: none;
@@ -552,12 +608,12 @@
         }
 
         .footer-section a:hover {
-            color: #f8b195;
+            color: #d4af8f;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 1.2rem;
             margin-top: 1.5rem;
         }
 
@@ -568,24 +624,25 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            background: rgba(248, 177, 149, 0.1);
-            color: #f8b195;
+            background: rgba(210, 180, 140, 0.1);
+            color: #d4af8f;
             font-size: 1.3rem;
             transition: all 0.3s ease;
         }
 
         .social-links a:hover {
-            background: linear-gradient(135deg, #f8b195, #f67280);
-            color: #fff;
+            background: linear-gradient(135deg, #d4af8f, #b88e6e);
+            color: #2a1e1a;
             transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(180, 140, 110, 0.3);
         }
 
         .copyright {
             text-align: center;
             padding-top: 3rem;
-            color: #888;
+            color: #a09895;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(210, 180, 140, 0.1);
             margin-top: 3rem;
         }
 
@@ -616,14 +673,76 @@
             .features-grid, .services-grid, .testimonial-grid {
                 grid-template-columns: 1fr;
             }
+
+            .features, .testimonials {
+                padding: 2.2rem;
+                margin: 2rem 1.2rem;
+            }
         }
+
+        @media (max-width: 480px) {
+            .logo span {
+                display: none;
+            }
+
+            .logo i {
+                font-size: 1.8rem;
+            }
+
+            .features, .testimonials {
+                padding: 1.8rem 1.5rem;
+            }
+         }
+              /* Reset and base styles for navigation */
+.nav-container {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 0.5rem;
+}
+
+.nav-links {
+    display: flex !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 2rem;
+    align-items: center !important;
+}
+
+.nav-links li {
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.nav-links a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: block;
+    white-space: nowrap;
+}
     </style>
 </head>
 <body>
     <nav>
         <div class="container">
             <div class="nav-container">
-                <a href="/" class="logo"><i class="fas fa-spa"></i>Pramilas Beauty Parlour</a>
+                <a href="/" class="logo"><i class="fas fa-spa"></i><span>Pramilas Beauty Parlour</span></a>
                 <ul class="nav-links">
                     <li><a href="/" class="active">Home</a></li>
                     <li><a href="/book-appointment">Book Appointment</a></li>
@@ -676,8 +795,50 @@
                 </div>
             </section>
 
-           
-           
+           <!-- <section class="testimonials">
+                <h2>What Our Clients Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="testimonial-content">
+                            "Absolutely amazing service! The staff is so professional and the results exceeded my expectations. I feel like a new person!"
+                        </div>
+                        <div class="client-info">
+                            <div class="client-avatar">S</div>
+                            <div class="client-details">
+                                <h4>Sneha Patil</h4>
+                                <p>Regular Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="testimonial-content">
+                            "The best beauty parlour in town! Quality services, reasonable prices, and such a welcoming atmosphere."
+                        </div>
+                        <div class="client-info">
+                            <div class="client-avatar">P</div>
+                            <div class="client-details">
+                                <h4>Priya Sharma</h4>
+                                <p>Loyal Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <div class="testimonial-content">
+                            "I've been coming here for years and they never disappoint. The attention to detail is remarkable!"
+                        </div>
+                        <div class="client-info">
+                            <div class="client-avatar">A</div>
+                            <div class="client-details">
+                                <h4>Anita Desai</h4>
+                                <p>VIP Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
         </div>
     </main>
 
@@ -690,8 +851,6 @@
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
@@ -705,10 +864,10 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Beauty Street, Mumbai, India</p>
-                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-                    <p><i class="fas fa-envelope"></i> info@pramilasbeauty.com</p>
-                    <p><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Mangal Dam, Behind Ganapati Mandir, Ichalkaranji</p>
+                    <p><i class="fas fa-phone"></i> +91 99607 00729</p>
+                    <p><i class="fas fa-envelope"></i> pramilasparlour6011@gmail.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 11:00 AM - 8:00 PM</p>
                 </div>
             </div>
             <div class="copyright">

@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'pages')));
 
 // Routes for API
 app.use('/api/appointments', appointmentRoutes); 
